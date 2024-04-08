@@ -4,15 +4,160 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/num1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="30dp"
+        android:gravity="end"
+        android:text="계산할 숫자를 입력해주세요"
+        android:textColor="@color/black"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toTopOf="@+id/res"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/res"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="180dp"
+        android:gravity="end"
+        android:text="Result"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@+id/num1" />
+
+    <GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <Button
+            android:id="@+id/btn_Clear"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="Clear" />
+
+        <Button
+            android:id="@+id/btn_bracket"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="()" />
+
+        <Button
+            android:id="@+id/btn_percent"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="%" />
+
+        <Button
+            android:id="@+id/btn_div"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="/" />
+
+        <Button
+            android:id="@+id/btn_7"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="7" />
+
+        <Button
+            android:id="@+id/btn_8"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="8" />
+
+        <Button
+            android:id="@+id/btn_9"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="9" />
+
+        <Button
+            android:id="@+id/btn_mul"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="*" />
+
+        <Button
+            android:id="@+id/btn_4"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="4" />
+
+        <Button
+            android:id="@+id/btn_5"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="5" />
+
+        <Button
+            android:id="@+id/btn_6"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="6" />
+
+        <Button
+            android:id="@+id/btn_sub"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="-" />
+
+        <Button
+            android:id="@+id/btn_1"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="1" />
+
+        <Button
+            android:id="@+id/btn_2"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="2" />
+
+        <Button
+            android:id="@+id/btn_3"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="3" />
+
+        <Button
+            android:id="@+id/btn_add"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="+" />
+
+        <Button
+            android:id="@+id/btn_X"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="" />
+
+        <Button
+            android:id="@+id/btn_0"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="0" />
+
+        <Button
+            android:id="@+id/btn_comma"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="." />
+
+        <Button
+            android:id="@+id/btn_res"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="=" />
+
+
+    </GridLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
