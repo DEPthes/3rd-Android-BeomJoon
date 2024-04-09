@@ -1,7 +1,7 @@
 package com.example.android_basic_study_01
 
 import android.os.Bundle
-import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.android_basic_study_01.databinding.ActivityMainBinding
 import java.util.Stack
@@ -43,14 +43,23 @@ class MainActivity : AppCompatActivity() {
             button.setOnClickListener { onOperatorButtonClick(button.text.toString()) }
         }
         binding.btnRes.setOnClickListener {
-            operands.add(tmpNum.toDouble())
-            tmpNum = ""
-            val result = evaluateExpression()
-            binding.res.text = result.toString()
+            if (isFirstInput) {
+                Toast.makeText(this, "입력된 수식이 없습니다.", Toast.LENGTH_SHORT).show()
+            } else if (operators.isEmpty()) {
+                Toast.makeText(this, "연산자가 없습니다.", Toast.LENGTH_SHORT).show()
+            } else {
+                operands.add(tmpNum.toDouble())
+                tmpNum = ""
+                val result = evaluateExpression()
+                binding.res.text = result.toString()
 
-            Log.d("Result", result.toString())
-            Log.d("Operands", operands.joinToString())
-            Log.d("Operators", operators.joinToString())
+//                Log.d("Result", result.toString())
+//                Log.d("Operands", operands.joinToString())
+//                Log.d("Operators", operators.joinToString())
+                isFirstInput = true
+                operands.clear()
+                operators.clear()
+            }
         }
         binding.btnClear.setOnClickListener {
             operands.clear()
@@ -74,10 +83,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onOperatorButtonClick(text: String) {
-        binding.num1.append(text)
-        operators.add(text)
-        operands.add(tmpNum.toDouble())
-        tmpNum = ""
+        if (isFirstInput) {
+            Toast.makeText(this, "숫자를 먼저 입력해주세요.", Toast.LENGTH_SHORT).show()
+        } else {
+            binding.num1.append(text)
+            operators.add(text)
+            operands.add(tmpNum.toDouble())
+            tmpNum = ""
+        }
     }
 
     private fun evaluateExpression(): Double {
@@ -101,7 +114,16 @@ class MainActivity : AppCompatActivity() {
 
         while (operatorStack.isNotEmpty()) {
             val result = applyOperation(numberStack.pop(), numberStack.pop(), operatorStack.pop())
-            numberStack.push(result)
+            if (result == Double.POSITIVE_INFINITY || result == Double.NEGATIVE_INFINITY) {
+                // 0으로 나누는 예외 처리
+                Toast.makeText(this, "0으로 나눌 수 없습니다.", Toast.LENGTH_SHORT).show()
+                operators.clear()
+                operands.clear()
+                return 0.0
+                binding.res.text = "Result"
+            } else {
+                numberStack.push(result)
+            }
         }
 
         return numberStack.pop()
