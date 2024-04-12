@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/search"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="30dp"
+        android:gravity="center"
+        android:hint="검색어를 입력해주세요."
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@id/news"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/news"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:src="@drawable/ic_news"
+        app:layout_constraintBottom_toTopOf="@id/mail"
+        app:layout_constraintEnd_toStartOf="@id/shop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="뉴스"
+        app:layout_constraintEnd_toEndOf="@id/news"
+        app:layout_constraintStart_toStartOf="@id/news"
+        app:layout_constraintTop_toBottomOf="@id/news" />
+
+    <ImageView
+        android:id="@+id/shop"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:src="@drawable/ic_shop"
+        app:layout_constraintEnd_toStartOf="@id/economy"
+        app:layout_constraintStart_toEndOf="@id/news"
+        app:layout_constraintTop_toTopOf="@id/news" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="쇼핑"
+        app:layout_constraintEnd_toEndOf="@id/shop"
+        app:layout_constraintStart_toStartOf="@id/shop"
+        app:layout_constraintTop_toBottomOf="@id/shop" />
+
+    <ImageView
+        android:id="@+id/economy"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:src="@drawable/ic_economy"
+        app:layout_constraintEnd_toStartOf="@id/clip"
+        app:layout_constraintStart_toEndOf="@id/shop"
+        app:layout_constraintTop_toTopOf="@id/news" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="경제"
+        app:layout_constraintEnd_toEndOf="@id/economy"
+        app:layout_constraintStart_toStartOf="@id/economy"
+        app:layout_constraintTop_toBottomOf="@id/economy" />
+
+    <ImageView
+        android:id="@+id/clip"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:src="@drawable/ic_clip"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/economy"
+        app:layout_constraintTop_toTopOf="@id/news" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="클립"
+        app:layout_constraintEnd_toEndOf="@id/clip"
+        app:layout_constraintStart_toStartOf="@id/clip"
+        app:layout_constraintTop_toBottomOf="@id/clip" />
+
+    <ImageView
+        android:id="@+id/mail"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/ic_mail"
+        app:layout_constraintEnd_toStartOf="@id/cafe"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/news" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="메일"
+        app:layout_constraintEnd_toEndOf="@id/mail"
+        app:layout_constraintStart_toStartOf="@id/mail"
+        app:layout_constraintTop_toBottomOf="@id/mail" />
+
+    <ImageView
+        android:id="@+id/cafe"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:src="@drawable/ic_cafe"
+        app:layout_constraintEnd_toStartOf="@id/blog"
+        app:layout_constraintStart_toEndOf="@id/mail"
+        app:layout_constraintTop_toTopOf="@id/mail" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="카페"
+        app:layout_constraintEnd_toEndOf="@id/cafe"
+        app:layout_constraintStart_toStartOf="@id/cafe"
+        app:layout_constraintTop_toBottomOf="@id/cafe" />
+
+    <ImageView
+        android:id="@+id/blog"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:src="@drawable/ic_blog"
+        app:layout_constraintEnd_toStartOf="@id/more"
+        app:layout_constraintStart_toEndOf="@id/cafe"
+        app:layout_constraintTop_toTopOf="@id/mail" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="블로그"
+        app:layout_constraintEnd_toEndOf="@id/blog"
+        app:layout_constraintStart_toStartOf="@id/blog"
+        app:layout_constraintTop_toBottomOf="@id/blog" />
+
+    <ImageView
+        android:id="@+id/more"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:src="@drawable/ic_more"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/blog"
+        app:layout_constraintTop_toTopOf="@id/mail" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="더보기"
+        app:layout_constraintEnd_toEndOf="@id/more"
+        app:layout_constraintStart_toStartOf="@id/more"
+        app:layout_constraintTop_toBottomOf="@id/more" />
+
+    <ImageView
+        android:id="@+id/rolex"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:src="@drawable/image_rolex"
+        app:layout_constraintBottom_toTopOf="@id/weather"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mail" />
+
+    <View
+        android:id="@+id/weather"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/kospi"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/kospi"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/weather" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="23.8도 청주"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/weather"
+        app:layout_constraintEnd_toEndOf="@id/weather"
+        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintStart_toStartOf="@id/weather"
+        app:layout_constraintTop_toTopOf="@id/weather"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="어제보다 2.9도 높아요"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/weather"
+        app:layout_constraintEnd_toEndOf="@id/weather"
+        app:layout_constraintHorizontal_bias="0.33"
+        app:layout_constraintStart_toStartOf="@id/weather"
+        app:layout_constraintTop_toTopOf="@id/weather"
+        app:layout_constraintVertical_bias="0.7" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2684.28"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/kospi"
+        app:layout_constraintEnd_toEndOf="@id/kospi"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="@id/kospi"
+        app:layout_constraintTop_toTopOf="@id/kospi" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
