@@ -3,10 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
     <TextView
+        android:background="@drawable/rounded_rectangle"
+        android:layout_marginTop="20dp"
         android:id="@+id/search"
         android:layout_width="match_parent"
         android:layout_height="52dp"
@@ -15,12 +18,29 @@
         android:layout_marginBottom="30dp"
         android:gravity="center"
         android:hint="검색어를 입력해주세요."
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@id/news"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:src="@drawable/ic_circle"
+        app:layout_constraintStart_toStartOf="@id/search"
+        android:layout_marginStart="12dp"
+        app:layout_constraintBottom_toBottomOf="@id/search"
+        app:layout_constraintTop_toTopOf="@id/search"/>
+
+    <ImageView
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:src="@drawable/ic_naver"
+        app:layout_constraintEnd_toEndOf="@id/search"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintBottom_toBottomOf="@id/search"
+        app:layout_constraintTop_toTopOf="@id/search"/>
 
     <ImageView
         android:id="@+id/news"
@@ -165,11 +185,12 @@
         android:id="@+id/rolex"
         android:layout_width="200dp"
         android:layout_height="80dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/rounded_border"
         android:src="@drawable/image_rolex"
         app:layout_constraintBottom_toTopOf="@id/weather"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mail" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <View
         android:id="@+id/weather"
@@ -190,6 +211,7 @@
         app:layout_constraintStart_toEndOf="@id/weather" />
 
     <TextView
+        android:id="@+id/weatherTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="23.8도 청주"
@@ -197,7 +219,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/weather"
         app:layout_constraintEnd_toEndOf="@id/weather"
-        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="@id/weather"
         app:layout_constraintTop_toTopOf="@id/weather"
         app:layout_constraintVertical_bias="0.3" />
@@ -207,22 +229,60 @@
         android:layout_height="wrap_content"
         android:text="어제보다 2.9도 높아요"
         android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@id/weatherTxt"
+        app:layout_constraintTop_toBottomOf="@id/weatherTxt" />
+
+    <ImageView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="4dp"
+        android:src="@drawable/ic_weather"
         app:layout_constraintBottom_toBottomOf="@id/weather"
         app:layout_constraintEnd_toEndOf="@id/weather"
-        app:layout_constraintHorizontal_bias="0.33"
-        app:layout_constraintStart_toStartOf="@id/weather"
-        app:layout_constraintTop_toTopOf="@id/weather"
-        app:layout_constraintVertical_bias="0.7" />
+        app:layout_constraintStart_toEndOf="@id/weatherTxt"
+        app:layout_constraintTop_toTopOf="@id/weather" />
 
     <TextView
+        android:id="@+id/kospiNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="2684.28"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/kospi"
         app:layout_constraintEnd_toEndOf="@id/kospi"
         app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="@id/kospi"
-        app:layout_constraintTop_toTopOf="@id/kospi" />
+        app:layout_constraintTop_toTopOf="@id/kospi"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <TextView
+        android:id="@+id/kospiTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="코스피 "
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@id/kospiNum"
+        app:layout_constraintTop_toBottomOf="@id/kospiNum" />
+
+    <ImageView
+        android:id="@+id/downImg"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="2dp"
+        android:src="@drawable/ic_down"
+        app:layout_constraintStart_toEndOf="@id/kospiTxt"
+        app:layout_constraintTop_toBottomOf="@id/kospiNum" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:text="0.84% "
+        android:textColor="#2196F3"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@id/downImg"
+        app:layout_constraintTop_toBottomOf="@id/kospiNum" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
