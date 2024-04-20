@@ -20,4 +20,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Android_Basic_Study_03"
-include(":app")
+include ':app'
