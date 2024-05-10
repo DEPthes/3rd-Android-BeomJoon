@@ -4,13 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="8dp">
-
     <TextView
         android:id="@+id/tv_movie_rank"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="영화 순위"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -18,8 +16,7 @@
         android:id="@+id/tv_movie_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="영화 제목"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@id/tv_movie_rank"
         app:layout_constraintTop_toBottomOf="@id/tv_movie_rank" />
 
@@ -27,8 +24,7 @@
         android:id="@+id/tv_movie_open"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="개봉일"
-        android:textSize="20sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@id/tv_movie_rank"
         app:layout_constraintTop_toBottomOf="@id/tv_movie_title" />
 
@@ -36,9 +32,14 @@
         android:id="@+id/tv_movie_aud"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="누적 관객 수"
-        android:textSize="20sp"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="@id/tv_movie_rank"
         app:layout_constraintTop_toBottomOf="@id/tv_movie_open" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_movie_aud" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
