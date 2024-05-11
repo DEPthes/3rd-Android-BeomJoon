@@ -36,24 +36,6 @@ class MainActivity : AppCompatActivity() {
                 movieRvAdapter.setData(movieList)
 
             }
-
         }
-
-//        lifecycleScope.launch {
-//            val movieList = BoxOfficeRepositoryImpl().getMovie("20240510")
-//
-//            // recyclerview adapter
-//            movieRvAdapter = MovieRvAdapter()
-//
-//            // set up recyclerview
-//            binding.rvMovieList.apply {
-//                setHasFixedSize(true)
-//                layoutManager = LinearLayoutManager(context)
-//                adapter = movieRvAdapter
-//            }
-//            // set data
-//            movieRvAdapter.setData(movieList)
-//
-//        }
     }
 }
