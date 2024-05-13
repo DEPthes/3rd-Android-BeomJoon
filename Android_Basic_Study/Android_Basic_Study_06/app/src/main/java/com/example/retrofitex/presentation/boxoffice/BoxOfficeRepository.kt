@@ -1,4 +1,4 @@
-package com.example.retrofitex
+package com.example.retrofitex.presentation.boxoffice
 
 import com.example.retrofitex.data.DailyBoxOfficeList
 

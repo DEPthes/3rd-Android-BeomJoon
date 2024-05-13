@@ -1,11 +1,9 @@
-package com.example.retrofitex
+package com.example.retrofitex.presentation.boxoffice
 
+import com.example.retrofitex.RetrofitClient
 import com.example.retrofitex.data.DailyBoxOfficeList
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import java.util.concurrent.TimeUnit
 
 class BoxOfficeRepositoryImpl : BoxOfficeRepository {
     val RestAPIKey = "9f89cd3eb4352ed4638674b75b5f8218"

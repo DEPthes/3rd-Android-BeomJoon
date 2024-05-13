@@ -1,8 +1,9 @@
-package com.example.retrofitex
+package com.example.retrofitex.presentation.movielist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.retrofitex.R
 import com.example.retrofitex.data.DailyBoxOfficeList
 import com.example.retrofitex.databinding.ItemMovieBinding
 
@@ -39,6 +40,13 @@ class MovieRvAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             binding.tvMovieOpen.text = itemView.context.getString(R.string.text_movie_opendate, item.openDt)
             binding.tvMovieAud.text = itemView.context.getString(R.string.text_movie_aud, item.audiAcc)
         }
+    }
+
+    fun addItem(item: DailyBoxOfficeList) {
+        val updatedList = ArrayList(movieList)
+        updatedList.add(item)
+        movieList = updatedList
+        notifyItemInserted(movieList.size - 1)
     }
 
 }
