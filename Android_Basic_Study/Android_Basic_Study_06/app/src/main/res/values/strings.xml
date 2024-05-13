@@ -4,4 +4,9 @@
     <string name="text_movie_name">영화 제목 : %s</string>
     <string name="text_movie_opendate">영화 개봉일 : %s</string>
     <string name="text_movie_aud">누적 관객 수 : %s</string>
+
+    <string name="dialog_text_movie_rank">영화 순위</string>
+    <string name="dialog_text_movie_name">영화 제목</string>
+    <string name="dialog_text_movie_open_date">영화 개봉일</string>
+    <string name="dialog_text_aud_acc">누적 관객 수</string>
 </resources>
