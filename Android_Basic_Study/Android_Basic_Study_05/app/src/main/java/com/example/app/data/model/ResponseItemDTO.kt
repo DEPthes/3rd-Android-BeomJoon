@@ -1,8 +1,8 @@
-package com.example.app.data
+package com.example.app.data.model
 
 import com.google.gson.annotations.SerializedName
 
-data class ItemDTO(
+data class ResponseItemDTO(
     @SerializedName("brand")
     val brand: String,
     @SerializedName("category")

@@ -1,10 +1,10 @@
-package com.example.app.presentation
+package com.example.app.presentation.Item
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.app.data.Item
+import com.example.app.data.model.Item
 import com.example.app.databinding.ItemListBinding
 
 class ItemRvAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

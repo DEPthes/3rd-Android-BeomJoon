@@ -1,11 +1,10 @@
-package com.example.app
+package com.example.app.presentation.favorite
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.app.data.Item
+import com.example.app.data.model.Item
 import com.example.app.databinding.ActivityFavoriteListBinding
-import com.example.app.presentation.favorite.FavoriteItemRvAdapter
 
 class FavoriteListActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFavoriteListBinding

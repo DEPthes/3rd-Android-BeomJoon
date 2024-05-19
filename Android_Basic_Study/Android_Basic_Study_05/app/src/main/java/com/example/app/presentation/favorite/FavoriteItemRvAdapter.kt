@@ -4,9 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.app.data.Item
+import com.example.app.data.model.Item
 import com.example.app.databinding.ItemFavoriteListBinding
-import com.example.app.databinding.ItemListBinding
 
 class FavoriteItemRvAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var itemList = ArrayList<Item>()
