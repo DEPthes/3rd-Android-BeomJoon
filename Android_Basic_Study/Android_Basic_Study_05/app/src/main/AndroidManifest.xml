@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".presentation.favorite.FavoriteListActivity"
+            android:name=".presentation.view.favorite.FavoriteListActivity"
             android:exported="true" />
     </application>
 

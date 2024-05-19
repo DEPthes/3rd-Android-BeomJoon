@@ -5,11 +5,11 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.app.presentation.favorite.FavoriteListActivity
+import com.example.app.presentation.view.favorite.FavoriteListActivity
 import com.example.app.data.model.Item
 import com.example.app.databinding.ActivityMainBinding
 import com.example.app.data.repository.ItemRepositoryImpl
-import com.example.app.presentation.Item.ItemRvAdapter
+import com.example.app.presentation.view.Item.ItemRvAdapter
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {

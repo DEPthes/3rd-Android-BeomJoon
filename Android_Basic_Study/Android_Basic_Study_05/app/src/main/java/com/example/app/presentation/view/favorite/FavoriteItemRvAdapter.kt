@@ -1,4 +1,4 @@
-package com.example.app.presentation.favorite
+package com.example.app.presentation.view.favorite
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

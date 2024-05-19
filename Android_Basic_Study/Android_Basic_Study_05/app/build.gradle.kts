@@ -46,6 +46,7 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.11.0")
 
     implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.0")
 
     var room_version = "2.6.1"
     kapt("androidx.room:room-compiler:2.6.1")

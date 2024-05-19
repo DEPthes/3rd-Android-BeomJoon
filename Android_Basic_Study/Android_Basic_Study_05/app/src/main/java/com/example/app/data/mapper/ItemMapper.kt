@@ -1,12 +1,12 @@
 package com.example.app.data.mapper
 
 import com.example.app.data.model.ResponseItemDTO
-import com.example.app.domain.model.item.ResponseItemEntity
+import com.example.app.domain.model.item.ItemEntity
 
 object ItemMapper {
-    fun mapperToResponseEntity(item: ResponseItemDTO): ResponseItemEntity {
+    fun mapperToResponseEntity(item: ResponseItemDTO): ItemEntity {
         return item.run {
-            ResponseItemEntity(price, thumbnail, title)
+            ItemEntity(price, thumbnail, title)
         }
     }
 }
