@@ -1,8 +1,20 @@
 package com.example.app.data.model
 
+
 import com.google.gson.annotations.SerializedName
 
 data class ResponseItemDTO(
+    @SerializedName("limit")
+    val limit: Int,
+    @SerializedName("products")
+    val products: List<ProductDTO>,
+    @SerializedName("skip")
+    val skip: Int,
+    @SerializedName("total")
+    val total: Int
+)
+
+data class ProductDTO(
     @SerializedName("brand")
     val brand: String,
     @SerializedName("category")

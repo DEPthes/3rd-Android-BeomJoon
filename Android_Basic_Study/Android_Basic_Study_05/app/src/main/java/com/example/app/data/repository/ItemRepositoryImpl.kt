@@ -10,7 +10,7 @@ import org.json.JSONObject
 class ItemRepositoryImpl : ItemRepository {
     private val service = RetrofitClient.getInstance().create(ItemService::class.java)
 
-    override suspend fun getItem(searchItem: String): Result<ItemEntity> {
+    override suspend fun getItem(searchItem: String): Result<List<ItemEntity>> {
         val response = service.getItem(searchItem)
         return if (response.isSuccessful) {
             Result.success(ItemMapper.mapperToResponseEntity(response.body()!!))

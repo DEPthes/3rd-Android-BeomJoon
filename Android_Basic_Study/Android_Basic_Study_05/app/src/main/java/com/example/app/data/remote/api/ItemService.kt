@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface ItemService {
     @GET("products/search")
-    fun getItem(
+    suspend fun getItem(
         @Query("q") q: String
     ): Response<ResponseItemDTO>
 }

@@ -4,11 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.app.data.model.Item
+import com.example.app.R
 import com.example.app.databinding.ItemListBinding
+import com.example.app.domain.model.item.ItemEntity
 
 class ItemRvAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private var itemList = ArrayList<Item>()
+    private var itemList = mutableListOf<ItemEntity>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val binding = ItemListBinding.inflate(
             LayoutInflater.from(parent.context),
@@ -28,21 +29,21 @@ class ItemRvAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    fun setData(list: ArrayList<Item>) {
-        itemList = list
+    fun setData(list: List<ItemEntity>) {
+        itemList = list.toMutableList()
         notifyDataSetChanged()
     }
 
     inner class ItemHolder(val binding: ItemListBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Item) {
+        val context = binding.root.context // 컨텍스트 가져오기
+        fun bind(item: ItemEntity) {
             Glide.with(binding.root.context)
-                .load(item.imageUrl)
+                .load(item.thumbnail)
                 .override(60, 60)
                 .into(binding.ivThumbnail)
-
-            binding.tvItemName.text = item.title
-            binding.tvItemPrice.text = item.price.toString()
+            binding.tvItemName2.text = context.getString(R.string.text_item_name, item.title)
+            binding.tvItemPrice.text = context.getString(R.string.text_item_price, item.price.toString())
         }
     }
 }
