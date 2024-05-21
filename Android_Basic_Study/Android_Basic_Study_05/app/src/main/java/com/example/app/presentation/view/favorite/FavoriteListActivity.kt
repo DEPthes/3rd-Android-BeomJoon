@@ -1,24 +1,27 @@
 package com.example.app.presentation.view.favorite
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.app.data.model.Item
 import com.example.app.databinding.ActivityFavoriteListBinding
+import com.example.app.presentation.MainActivity
+import com.example.app.presentation.utils.UiState
 
 class FavoriteListActivity : AppCompatActivity() {
+    private val favoriteItemViewModel: FavoriteItemViewModel by viewModels()
     private lateinit var binding: ActivityFavoriteListBinding
-    private val favoriteList = ArrayList<Item>()
     private lateinit var favoriteItemRvAdapter: FavoriteItemRvAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFavoriteListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        observer()
 
-        // 데이터 추가
-        favoriteList.add(Item("https://cdn.dummyjson.com/product-images/7/1.jpg", "옷", 120))
-        favoriteList.add(Item("https://cdn.dummyjson.com/product-images/7/thumbnail.jpg", "바지", 9999))
 
         // recyclerview adapter
         favoriteItemRvAdapter = FavoriteItemRvAdapter()
@@ -30,7 +33,30 @@ class FavoriteListActivity : AppCompatActivity() {
             adapter = favoriteItemRvAdapter
         }
         // set data
-        favoriteItemRvAdapter.setData(favoriteList)
+        favoriteItemViewModel.fetchData(this)
 
+        binding.ivBack.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    private fun observer() {
+        favoriteItemViewModel.uiState.observe(this) {
+            when (it) {
+                is UiState.Failure -> {
+                    Log.d("TAG", it.error.toString())
+                    Toast.makeText(applicationContext, it.error.toString(), Toast.LENGTH_SHORT)
+                        .show()
+                }
+
+                is UiState.Loading -> {}
+                is UiState.Success -> {
+                    favoriteItemRvAdapter.setData(it.data)
+                }
+
+                else -> {}
+            }
+        }
     }
 }
