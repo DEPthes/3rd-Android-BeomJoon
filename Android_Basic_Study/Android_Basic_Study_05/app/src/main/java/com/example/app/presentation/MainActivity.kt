@@ -8,19 +8,15 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.app.presentation.view.favorite.FavoriteListActivity
-import com.example.app.data.model.Item
 import com.example.app.databinding.ActivityMainBinding
-import com.example.app.domain.model.item.ItemEntity
 import com.example.app.presentation.utils.UiState
 import com.example.app.presentation.view.Item.ItemRvAdapter
 import com.example.app.presentation.view.Item.ItemViewModel
 
 class MainActivity : AppCompatActivity() {
     private val itemViewModel: ItemViewModel by viewModels()
-    private var itemList = listOf<ItemEntity>()
     private lateinit var itemRvAdapter: ItemRvAdapter
     private lateinit var binding: ActivityMainBinding
-    //    private lateinit var db: AppDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(layoutInflater)
