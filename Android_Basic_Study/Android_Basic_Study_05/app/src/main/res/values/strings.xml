@@ -3,4 +3,5 @@
     <string name="text_item_name">%s</string>
     <string name="text_item_price">상품 가격 : %s</string>
     <string name="text_favorite_add">찜하기</string>
+    <string name="text_favorite_delete">찜 해제</string>
 </resources>
