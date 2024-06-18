@@ -23,10 +23,7 @@ class PhotoRepositoryImpl : PhotoRepository {
     }
 
 
-    override suspend fun getRandomPhotos(
-        clientId: String,
-        query: String?
-    ): Result<List<PhotoEntity>> {
+    override suspend fun getRandomPhotos(): Result<List<PhotoEntity>> {
         val res = service.getRandomPhotos("v1", "Client-ID ${BuildConfig.UNSPLASH_ACCESS_KEY}")
         return if (res.isSuccessful) {
             Log.d("TAG", res.body().toString())

@@ -19,6 +19,5 @@ interface PhotoService {
         @Header("Accept-Version") version: String,
         @Header("Authorization") clientId: String,
         @Query("count") count: Int = 5,
-        @Query("query") query: String? = null
     ): Response<List<ResponsePhotoDTOItem>>
 }

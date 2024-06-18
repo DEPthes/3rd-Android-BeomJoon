@@ -43,7 +43,7 @@ class RecentRvAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
             // 클릭 이벤트 설정
             itemView.setOnClickListener {
-                itemClick.onClick(adapterPosition)
+//                itemClick.onClick(adapterPosition)
             }
         }
     }

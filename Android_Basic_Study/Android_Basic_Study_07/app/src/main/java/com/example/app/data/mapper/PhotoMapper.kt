@@ -12,7 +12,7 @@ object PhotoMapper {
             val thumbUrl = it.urls.thumb
             val description = it.description ?: ""
 
-            photoList.add(PhotoEntity(id, thumbUrl, description))
+            photoList.add(PhotoEntity(id, thumbUrl, description, false))
         }
         return photoList
     }
