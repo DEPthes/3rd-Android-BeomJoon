@@ -7,8 +7,12 @@ object PhotoMapper {
 
     fun mapperToResponseEntity(item: List<ResponsePhotoDTOItem>): List<PhotoEntity> {
         val photoList = mutableListOf<PhotoEntity>()
-        item.map {
-            it.urls.thumb.let { thumbUrl -> photoList.add(PhotoEntity(thumbUrl)) }
+        item.forEach {
+            val id = it.id
+            val thumbUrl = it.urls.thumb
+            val description = it.description ?: ""
+
+            photoList.add(PhotoEntity(id, thumbUrl, description))
         }
         return photoList
     }

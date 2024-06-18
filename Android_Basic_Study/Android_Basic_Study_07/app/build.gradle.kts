@@ -37,6 +37,17 @@ android {
                 "proguard-rules.pro"
             )
         }
+        debug {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+
+            applicationIdSuffix = ".dev"
+            resValue("string", "BUILD_TYPE", "debug 타입 입니다.")
+            buildConfigField("boolean", "IS_DEBUG", "true")
+        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -48,6 +59,7 @@ android {
     buildFeatures {
         viewBinding = true
         buildConfig = true
+        dataBinding = true
     }
 }
 
@@ -81,4 +93,7 @@ dependencies {
 
     // Facebook Shimmer - Optional
     implementation(libs.shimmer)
+
+    // Circle imageView
+    implementation(libs.circleimageview)
 }

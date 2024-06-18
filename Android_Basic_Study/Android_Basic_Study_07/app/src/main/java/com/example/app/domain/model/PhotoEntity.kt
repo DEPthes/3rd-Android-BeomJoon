@@ -1,5 +1,7 @@
 package com.example.app.domain.model
 
 data class PhotoEntity(
-    val thumb: String
+    val id: String,
+    val thumb: String,
+    val description: String,
 )
