@@ -1,8 +1,10 @@
 package com.example.app.view.card
 
+import android.graphics.PorterDuff
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.app.R
@@ -42,7 +44,7 @@ class CardRvAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             // 북마크 상태에 따라 버튼 배경 설정
             setBookmarkState(item.isBookmark)
 
-            binding.ibBookmark.setOnClickListener {
+            binding.ivBookmark.setOnClickListener {
                 item.isBookmark = !item.isBookmark
                 setBookmarkState(item.isBookmark)
                 Log.d("TAG2", "북마크 ${if (item.isBookmark) "추가" else "제거"}")
@@ -51,9 +53,19 @@ class CardRvAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         private fun setBookmarkState(isBookmarked: Boolean) {
             if (isBookmarked) {
-                binding.ibBookmark.setBackgroundColor(binding.root.context.getColor(R.color.blue))
+                binding.ivBookmark.setColorFilter(
+                    ContextCompat.getColor(
+                        binding.root.context,
+                        R.color.blue
+                    ), PorterDuff.Mode.SRC_IN
+                )
             } else {
-                binding.ibBookmark.setBackgroundColor(binding.root.context.getColor(R.color.gray))
+                binding.ivBookmark.setColorFilter(
+                    ContextCompat.getColor(
+                        binding.root.context,
+                        R.color.gray
+                    ), PorterDuff.Mode.SRC_IN
+                )
             }
         }
     }

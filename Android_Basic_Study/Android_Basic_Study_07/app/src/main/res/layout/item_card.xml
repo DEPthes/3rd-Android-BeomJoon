@@ -37,18 +37,17 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/iv_random_photo">
 
-                <ImageButton
-                    android:id="@+id/ib_bookmark"
-                    android:layout_width="68dp"
-                    android:layout_height="68dp"
-                    android:background="@drawable/shape_round_bookmark"
-                    android:backgroundTint="@color/gray"
+                <ImageView
+                    android:id="@+id/iv_bookmark"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:src="@drawable/ic_bookmark"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="ContentDescription" />
+                    tools:ignore="ContentDescription"
+                    app:tint="@color/gray" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
