@@ -19,6 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:background="@color/black"
+        app:itemActiveIndicatorStyle="@android:color/transparent"
         app:itemIconTint="@color/selector_bn_color"
         app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"
