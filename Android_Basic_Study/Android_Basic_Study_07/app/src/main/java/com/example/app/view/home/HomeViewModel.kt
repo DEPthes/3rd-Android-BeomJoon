@@ -1,6 +1,5 @@
 package com.example.app.view.home
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -22,7 +21,6 @@ class HomeViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 photoRepositoryImpl.getPhotos().onSuccess {
-                    Log.d("TAG", it.toString())
                     _photoState.value = UiState.Success(it)
                 }.onFailure {
                     _photoState.value = UiState.Failure(it.message)

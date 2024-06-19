@@ -46,13 +46,12 @@ class HomeFragment : Fragment() {
         homeViewModel.photoState.observe(viewLifecycleOwner) {
             when (it) {
                 is UiState.Failure -> {
-                    Log.d("TAG1", "사진 로딩 실패")
+                    Log.d("HomeFragment", "사진 로딩 실패")
                 }
 
                 is UiState.Loading -> {}
                 is UiState.Success -> {
                     recentRvAdapter.setData(it.data)
-                    Log.d("TAG1", "성공")
                 }
             }
         }
@@ -62,5 +61,4 @@ class HomeFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 }
