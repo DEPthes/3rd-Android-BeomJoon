@@ -11,7 +11,7 @@ data class PhotoDaoEntity(
     @ColumnInfo
     val thumb: String,
     @ColumnInfo
-    val tag: List<String>,
+    val tag: String,
     @ColumnInfo
     val country: String,
     @ColumnInfo

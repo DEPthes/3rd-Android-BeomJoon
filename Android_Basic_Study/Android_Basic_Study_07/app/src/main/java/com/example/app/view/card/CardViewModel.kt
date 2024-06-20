@@ -22,7 +22,7 @@ class CardViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 photoRepositoryImpl.getRandomPhotos().onSuccess {
-                    Log.d("TAG", it.toString())
+//                    Log.d("TAG", it.toString())
                     _randomState.value = UiState.Success(it)
                 }.onFailure {
                     _randomState.value = UiState.Failure(it.message)

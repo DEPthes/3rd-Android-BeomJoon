@@ -7,6 +7,5 @@ interface PhotoRepository {
 
     suspend fun getPhotos(): Result<List<PhotoEntity>>
     suspend fun getRandomPhotos(): Result<List<PhotoEntity>>
-
     suspend fun getPhotoDetail(photoId: String): Result<PhotoDetailEntity>
 }
