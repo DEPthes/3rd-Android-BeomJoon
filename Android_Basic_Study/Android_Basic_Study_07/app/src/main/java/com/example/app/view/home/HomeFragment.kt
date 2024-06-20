@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.app.databinding.FragmentHomeBinding
+import com.example.app.view.MainActivity
+import com.example.app.view.detail.DetailFragment
 import com.example.app.view.utils.UiState
 
 class HomeFragment : Fragment() {
@@ -25,8 +27,18 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(layoutInflater)
-        bookmarkRvAdapter = BookmarkRvAdapter()
-        recentRvAdapter = RecentRvAdapter()
+        bookmarkRvAdapter = BookmarkRvAdapter().apply {
+
+        }
+        recentRvAdapter = RecentRvAdapter().apply {
+            this.setItemClickListener(object : OnItemClickListener {
+                override fun onItemClick(id: String) {
+                    (requireActivity() as MainActivity).replaceFragmentWithBackstack(
+                        DetailFragment(id)
+                    )
+                }
+            })
+        }
 
         binding.rvBookmark.layoutManager = LinearLayoutManager(
             requireContext(), LinearLayoutManager.HORIZONTAL, false

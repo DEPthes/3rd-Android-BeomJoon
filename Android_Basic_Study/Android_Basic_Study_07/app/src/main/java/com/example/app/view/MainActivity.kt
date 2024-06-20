@@ -21,9 +21,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // 초기 HomeFragment로 설정
-        supportFragmentManager.beginTransaction()
-            .add(binding.flMain.id, HomeFragment())
-            .commit()
+        supportFragmentManager.beginTransaction().add(binding.flMain.id, HomeFragment()).commit()
 
         // BottomNavigationView 아이템 클릭 리스너 설정
         binding.bn.setOnItemSelectedListener { item ->
@@ -45,8 +43,11 @@ class MainActivity : AppCompatActivity() {
 
     // 프래그먼트 교체하는 함수
     private fun replaceFragment(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
-            .replace(binding.flMain.id, fragment)
-            .commit()
+        supportFragmentManager.beginTransaction().replace(binding.flMain.id, fragment).commit()
+    }
+
+    fun replaceFragmentWithBackstack(fragment: Fragment) {
+        supportFragmentManager.beginTransaction().replace(binding.flMain.id, fragment)
+            .addToBackStack(null).commit()
     }
 }

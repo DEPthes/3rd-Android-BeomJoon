@@ -8,7 +8,7 @@ import com.example.app.databinding.ItemBookmarkBinding
 import com.example.app.databinding.ItemRecentImageBinding
 import com.example.app.domain.model.PhotoEntity
 
-class RecentRvAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class RecentRvAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var recentList: List<PhotoEntity> = emptyList()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val binding = ItemRecentImageBinding.inflate(
@@ -43,7 +43,7 @@ class RecentRvAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
             // 클릭 이벤트 설정
             itemView.setOnClickListener {
-//                itemClick.onClick(adapterPosition)
+                itemClick.onItemClick(item.id)
             }
         }
     }
