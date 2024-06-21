@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.example.app.databinding.FragmentDetailBinding
+import com.example.app.view.MainActivity
 import com.example.app.view.utils.UiState
 
 class DetailFragment(private val photoId: String) : Fragment() {
@@ -22,6 +23,14 @@ class DetailFragment(private val photoId: String) : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentDetailBinding.inflate(layoutInflater)
+
+        // NavBar 숨기기
+        (activity as MainActivity).hideNavBar()
+
+        binding.ivExit.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+            (activity as MainActivity).showNavBar()
+        }
 
         observer()
         detailViewModel.fetchData(photoId)
@@ -46,10 +55,18 @@ class DetailFragment(private val photoId: String) : Fragment() {
                     binding.tvPhotoDesc.text = it.data.description
                     binding.tvPhotoLikes.text = it.data.likes.toString()
                     binding.tvPhotoDownloads.text = it.data.downloads.toString()
-                    binding.tvPhotoTags.text = "tags"
+                    binding.tvPhotoTags.text = it.data.tags.joinToString(" ") { tag -> "#$tag" }
+
+                    // 북마크 불투명도 설정
+                    setBookmarkOpacity(it.data.isBookmark)
                 }
             }
         }
+    }
+
+    private fun setBookmarkOpacity(isBookmark: Boolean) {
+        val opacity = if (isBookmark) 0.3f else 1.0f
+        binding.ivBookmark.alpha = opacity
     }
 
     override fun onDestroyView() {
