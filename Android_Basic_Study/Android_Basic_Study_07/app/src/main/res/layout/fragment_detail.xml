@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black">
+    android:background="@color/black_90"
+    android:clickable="true"
+    android:focusable="true">
 
     <Toolbar
         android:id="@+id/tb_detail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/black"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -28,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="유저이름"
+        android:text="함범준"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@id/iv_exit"
         app:layout_constraintStart_toEndOf="@id/iv_exit"
@@ -80,12 +81,16 @@
         android:id="@+id/iv_photo_detail"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/shape_round_card_inner_16"
+        android:clipToOutline="true"
         android:scaleType="fitXY"
-        android:src="@mipmap/ic_launcher"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintTop_toBottomOf="@id/tb_detail"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription,UnusedAttribute"
+        tools:src="@mipmap/ic_launcher" />
 
     <TextView
         android:id="@+id/text_photo_desc"
@@ -102,16 +107,18 @@
 
     <TextView
         android:id="@+id/tv_photo_desc"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
+        android:ellipsize="end"
         android:maxWidth="200dp"
         android:maxLines="2"
-        android:text="사진 설명입니다\n최대 2줄"
         android:textColor="@color/white"
         android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@id/iv_photo_detail"
         app:layout_constraintStart_toStartOf="@id/text_photo_desc"
-        app:layout_constraintTop_toBottomOf="@id/text_photo_desc" />
+        app:layout_constraintTop_toBottomOf="@id/text_photo_desc"
+        tools:text="사진 설명입니다\n최대 2줄" />
 
     <ImageView
         android:id="@+id/iv_likes"
@@ -160,13 +167,16 @@
 
     <TextView
         android:id="@+id/tv_photo_tags"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:text="#태그1 #태그2 #태그3"
-        android:textColor="@color/white"
         android:layout_marginBottom="12dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@id/text_photo_desc" />
+        app:layout_constraintEnd_toEndOf="@id/iv_photo_detail"
+        app:layout_constraintStart_toStartOf="@id/text_photo_desc"
+        tools:text="#태그" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
