@@ -37,15 +37,15 @@ class BookmarkRvAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 .into(binding.ivBookmarkPhoto)
 
             itemView.setOnClickListener {
-                itemClick.onItemClick(item.photoId)
+                itemClickListener?.onItemClick(item.photoId)
             }
         }
     }
 
-    lateinit var itemClick: OnItemClickListener
+    private var itemClickListener: OnItemClickListener? = null
 
-    fun setItemClickListener(onItemClickListener: OnItemClickListener) {
-        this.itemClick = onItemClickListener
+    fun setItemClickListener(listener: OnItemClickListener) {
+        itemClickListener = listener
     }
 
     fun setData(list: List<PhotoDaoEntity>) {
