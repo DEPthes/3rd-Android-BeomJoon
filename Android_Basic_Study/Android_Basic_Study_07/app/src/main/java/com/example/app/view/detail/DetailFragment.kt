@@ -82,8 +82,11 @@ class DetailFragment(private val photoId: String) : Fragment() {
 
     private fun setupListeners() {
         binding.ivExit.setOnClickListener {
-            requireActivity().supportFragmentManager.popBackStack()
+            // NavBar 표시
             (activity as MainActivity).showNavBar()
+
+            // Remove this fragment from back stack
+            requireActivity().supportFragmentManager.popBackStack()
         }
     }
 

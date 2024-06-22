@@ -60,7 +60,7 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
                 _bookmarkState.value = UiState.Success(true)
             } catch (e: Exception) {
                 e.printStackTrace()
-                _detailState.value = UiState.Failure(e.message)
+                _bookmarkState.value = UiState.Failure(e.message)
             }
         }
     }
@@ -72,7 +72,7 @@ class DetailViewModel(application: Application) : AndroidViewModel(application) 
                 _bookmarkState.value = UiState.Success(false)
             } catch (e: Exception) {
                 e.printStackTrace()
-                _detailState.value = UiState.Failure(e.message)
+                _bookmarkState.value = UiState.Failure(e.message)
             }
         }
     }

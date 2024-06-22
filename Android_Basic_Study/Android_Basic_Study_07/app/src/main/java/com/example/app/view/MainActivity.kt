@@ -1,6 +1,7 @@
 package com.example.app.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -49,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                 android.R.anim.fade_in,
                 android.R.anim.fade_out
             )
-            .add(binding.flMain.id, fragment) // `add`를 사용하여 프래그먼트 위에 겹치도록 함
+            .add(binding.flMain.id, fragment) // add를 사용하여 프래그먼트를 겹치도록 함
             .addToBackStack(null)
             .commit()
     }
