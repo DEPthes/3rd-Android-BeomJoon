@@ -12,6 +12,7 @@ import com.example.app.data.local.PhotoDaoEntity
 import com.example.app.databinding.FragmentHomeBinding
 import com.example.app.view.MainActivity
 import com.example.app.view.detail.DetailFragment
+import com.example.app.view.detail.FullFragment
 import com.example.app.view.utils.UiState
 
 class HomeFragment : Fragment() {
@@ -42,8 +43,11 @@ class HomeFragment : Fragment() {
         recentRvAdapter = RecentRvAdapter().apply {
             this.setItemClickListener(object : OnItemClickListener {
                 override fun onItemClick(id: String) {
-                    (requireActivity() as MainActivity).replaceFragmentWithBackstack(
-                        DetailFragment(id)
+//                    (requireActivity() as MainActivity).replaceFragmentWithBackstack(
+//                        DetailFragment(id)
+//                    )
+                    FullFragment(id).show(
+                        parentFragmentManager, "SampleDialog"
                     )
                 }
             })
@@ -100,6 +104,11 @@ class HomeFragment : Fragment() {
                 "https://images.unsplash.com/photo-1718489211836-65a20ad6bd8d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MjAyNzh8MHwxfGFsbHx8fHx8fHx8fDE3MTg5NTEzMTV8&ixlib=rb-4.0.3&q=80&w=200"
             )
         )
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("HomeFragment", "onResume")
     }
 
     override fun onDestroyView() {
