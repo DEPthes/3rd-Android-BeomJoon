@@ -11,8 +11,9 @@ import com.example.app.domain.model.PhotoEntity
 import com.example.app.domain.repository.PhotoRepository
 import org.json.JSONObject
 
-class PhotoRepositoryImpl : PhotoRepository {
+class PhotoRepositoryImpl() : PhotoRepository {
     private val service = RetrofitClient.getInstance().create(PhotoService::class.java)
+
     override suspend fun getPhotos(): Result<List<PhotoEntity>> {
         val res = service.getPhotos("v1", "Client-ID ${BuildConfig.UNSPLASH_ACCESS_KEY}")
         return if (res.isSuccessful) {
@@ -23,7 +24,6 @@ class PhotoRepositoryImpl : PhotoRepository {
             Result.failure(java.lang.Exception(errorMsg))
         }
     }
-
 
     override suspend fun getRandomPhotos(): Result<List<PhotoEntity>> {
         val res = service.getRandomPhotos("v1", "Client-ID ${BuildConfig.UNSPLASH_ACCESS_KEY}")
@@ -40,6 +40,7 @@ class PhotoRepositoryImpl : PhotoRepository {
         val res =
             service.getPhotoDetail("v1", "Client-ID ${BuildConfig.UNSPLASH_ACCESS_KEY}", photoId)
         return if (res.isSuccessful) {
+            Log.d("TAG", res.body().toString())
             Result.success(PhotoDetailMapper.mapperToResponseEntity(res.body()!!))
         } else {
             val errorMsg = JSONObject(res.errorBody()!!.string()).getString("msg")
