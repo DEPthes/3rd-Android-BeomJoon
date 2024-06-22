@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.app.databinding.FragmentCardBinding
+import com.example.app.view.detail.DetailViewModel
 import com.example.app.view.utils.UiState
 
 class CardFragment : Fragment() {
@@ -17,6 +18,7 @@ class CardFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var cardRvAdapter: CardRvAdapter
     private val cardViewModel: CardViewModel by viewModels()
+    private val detailViewModel: DetailViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,7 +26,7 @@ class CardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCardBinding.inflate(layoutInflater)
-        cardRvAdapter = CardRvAdapter()
+        cardRvAdapter = CardRvAdapter(requireContext(), detailViewModel)
 
         binding.rvRandomPhotos.layoutManager = LinearLayoutManager(
             requireContext(), LinearLayoutManager.HORIZONTAL, false
@@ -41,13 +43,13 @@ class CardFragment : Fragment() {
         cardViewModel.randomState.observe(viewLifecycleOwner) {
             when (it) {
                 is UiState.Failure -> {
-                    Log.d("TAG2", "사진 로딩 실패")
+                    Log.d("TAG2", "랜덤 사진 로딩 실패")
                 }
 
                 is UiState.Loading -> {}
                 is UiState.Success -> {
                     cardRvAdapter.setData(it.data)
-                    Log.d("TAG2", "사진 로딩 성공")
+                    Log.d("TAG2", "랜덤 사진 로딩 성공")
                 }
             }
         }
