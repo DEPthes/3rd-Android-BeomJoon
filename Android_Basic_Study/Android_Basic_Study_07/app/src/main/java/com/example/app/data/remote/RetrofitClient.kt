@@ -17,7 +17,6 @@ object RetrofitClient {
         HttpLoggingInterceptor(PrettyJsonLogger()).setLevel(
             HttpLoggingInterceptor.Level.BODY)
     } else {
-//        HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE)
         HttpLoggingInterceptor(PrettyJsonLogger()).setLevel(
             HttpLoggingInterceptor.Level.BODY)
     }
