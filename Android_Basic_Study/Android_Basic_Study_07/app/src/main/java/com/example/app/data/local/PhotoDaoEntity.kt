@@ -6,18 +6,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "bookmarkPhoto")
 data class PhotoDaoEntity(
-    @PrimaryKey(autoGenerate = true)
-    val id : Long = 0L,
+    @PrimaryKey
+    val photoId: String,
     @ColumnInfo
     val thumb: String,
-    @ColumnInfo
-    val tag: String,
-    @ColumnInfo
-    val country: String,
-    @ColumnInfo
-    val city: String,
-    @ColumnInfo
-    val likes: Int,
-    @ColumnInfo
-    val downloads: Int,
 )
