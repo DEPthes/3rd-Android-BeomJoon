@@ -25,6 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="12dp"
+                android:clipToOutline="true"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="120dp"
                 android:background="@drawable/shape_round_card_inner_16_black"
