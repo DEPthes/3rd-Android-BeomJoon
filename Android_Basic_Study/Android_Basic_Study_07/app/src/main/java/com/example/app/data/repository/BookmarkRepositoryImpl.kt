@@ -12,15 +12,19 @@ class BookmarkRepositoryImpl(private val photoDao: PhotoDao) : BookmarkRepositor
         photoDao.getBookmarkList()
     }
 
+    override suspend fun searchIsBookmark(photoId: String): Boolean = withContext(Dispatchers.IO) {
+        photoDao.searchIsBookmark(photoId)
+    }
+
     override suspend fun addBookmark(photoInfo: PhotoDaoEntity) {
         withContext(Dispatchers.IO) {
             photoDao.addBookmark(photoInfo)
         }
     }
 
-    override suspend fun removeBookmark(photoInfo: PhotoDaoEntity) {
+    override suspend fun deleteBookmark(photoId: String) {
         withContext(Dispatchers.IO) {
-            photoDao.deleteBookmark(photoInfo)
+            photoDao.deleteBookmark(photoId)
         }
     }
 

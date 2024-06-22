@@ -5,9 +5,6 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.app.R
-import com.example.app.data.local.PhotoDao
-import com.example.app.data.local.PhotoDaoEntity
-import com.example.app.data.local.PhotoDatabase
 import com.example.app.databinding.ActivityMainBinding
 import com.example.app.view.card.CardFragment
 import com.example.app.view.home.HomeFragment

@@ -1,6 +1,5 @@
 package com.example.app.view.home
 
-import android.app.Application
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,11 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.app.data.local.PhotoDao
 import com.example.app.data.local.PhotoDaoEntity
-import com.example.app.data.local.PhotoDatabase
 import com.example.app.databinding.FragmentHomeBinding
-import com.example.app.view.DbApplication
 import com.example.app.view.MainActivity
 import com.example.app.view.detail.DetailFragment
 import com.example.app.view.utils.UiState
@@ -57,7 +53,6 @@ class HomeFragment : Fragment() {
             requireContext(), LinearLayoutManager.HORIZONTAL, false
         )
         binding.rvBookmark.adapter = bookmarkRvAdapter
-
 
         binding.rvRecentImage.adapter = recentRvAdapter
 
