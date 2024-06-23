@@ -11,11 +11,12 @@ import com.example.app.domain.model.PhotoEntity
 import com.example.app.domain.repository.PhotoRepository
 import org.json.JSONObject
 
-class PhotoRepositoryImpl() : PhotoRepository {
+class PhotoRepositoryImpl : PhotoRepository {
     private val service = RetrofitClient.getInstance().create(PhotoService::class.java)
 
-    override suspend fun getPhotos(): Result<List<PhotoEntity>> {
-        val res = service.getPhotos("v1", "Client-ID ${BuildConfig.UNSPLASH_ACCESS_KEY}")
+    override suspend fun getPhotos(currentPage: Int): Result<List<PhotoEntity>> {
+        val res =
+            service.getPhotos("v1", "Client-ID ${BuildConfig.UNSPLASH_ACCESS_KEY}", currentPage)
         return if (res.isSuccessful) {
             if (res.body() == null) Result.success(listOf())
             else Result.success(PhotoMapper.mapperToResponseEntity(res.body()!!))

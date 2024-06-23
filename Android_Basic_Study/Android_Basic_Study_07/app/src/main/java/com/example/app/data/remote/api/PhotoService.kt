@@ -14,13 +14,15 @@ interface PhotoService {
     suspend fun getPhotos(
         @Header("Accept-Version") version: String,
         @Header("Authorization") clientId: String,
+        @Query("page") page: Int,
+        @Query("per_page") count: Int = 8,
     ): Response<List<ResponsePhotoDTOItem>>
 
     @GET("photos/random")
     suspend fun getRandomPhotos(
         @Header("Accept-Version") version: String,
         @Header("Authorization") clientId: String,
-        @Query("count") count: Int = 10,
+        @Query("count") count: Int = 5,
     ): Response<List<ResponsePhotoDTOItem>>
 
     @GET("photos/{id}")
