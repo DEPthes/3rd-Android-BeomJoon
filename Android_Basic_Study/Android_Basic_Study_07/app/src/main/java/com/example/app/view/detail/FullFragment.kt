@@ -22,6 +22,7 @@ class FullFragment(private val photoId: String) : DialogFragment() {
     private val binding get() = _binding!!
     private val detailViewModel: DetailViewModel by viewModels()
     private val homeViewModel: HomeViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // false로 설정해 주면 화면밖 혹은 뒤로가기 버튼 시 다이얼로그라 dismiss 되지 않는다.
@@ -36,13 +37,14 @@ class FullFragment(private val photoId: String) : DialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentDetailBinding.inflate(inflater, container, false)
 
         // NavBar 숨기기
         (activity as MainActivity).hideNavBar()
         detailViewModel.fetchData(photoId)
         detailViewModel.isBookmark(photoId)
+
         setupListeners()
         setObservers()
         return binding.root

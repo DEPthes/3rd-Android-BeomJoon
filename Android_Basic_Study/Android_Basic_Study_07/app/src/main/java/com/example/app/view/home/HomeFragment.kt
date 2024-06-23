@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.app.data.local.PhotoDaoEntity
 import com.example.app.databinding.FragmentHomeBinding
 import com.example.app.view.MainActivity
@@ -22,7 +24,9 @@ class HomeFragment : Fragment() {
     private lateinit var bookmarkRvAdapter: BookmarkRvAdapter
     private lateinit var recentRvAdapter: RecentRvAdapter
     private val homeViewModel: HomeViewModel by viewModels()
-
+    private var isLoading = false
+    private var lastVisibleItem = 0
+    private var currentPage = 1
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,8 +35,20 @@ class HomeFragment : Fragment() {
     ): View {
         _binding = FragmentHomeBinding.inflate(layoutInflater)
 
+        // 어댑터 초기화 및 설정
+        setupAdapters()
+
+        observers()
+        homeViewModel.getPhotos(currentPage)
+        homeViewModel.getBookmarkPhotos()
+//        addSampleData()
+
+        return binding.root
+    }
+
+    private fun setupAdapters() {
         bookmarkRvAdapter = BookmarkRvAdapter().apply {
-            this.setItemClickListener(object : OnItemClickListener {
+            setItemClickListener(object : OnItemClickListener {
                 override fun onItemClick(id: String) {
                     (requireActivity() as MainActivity).replaceFragmentWithBackstack(
                         DetailFragment(id)
@@ -40,12 +56,10 @@ class HomeFragment : Fragment() {
                 }
             })
         }
+
         recentRvAdapter = RecentRvAdapter().apply {
-            this.setItemClickListener(object : OnItemClickListener {
+            setItemClickListener(object : OnItemClickListener {
                 override fun onItemClick(id: String) {
-//                    (requireActivity() as MainActivity).replaceFragmentWithBackstack(
-//                        DetailFragment(id)
-//                    )
                     FullFragment(id).show(
                         parentFragmentManager, "SampleDialog"
                     )
@@ -59,13 +73,31 @@ class HomeFragment : Fragment() {
         binding.rvBookmark.adapter = bookmarkRvAdapter
 
         binding.rvRecentImage.adapter = recentRvAdapter
+    }
 
-        observers()
-        homeViewModel.getPhotos()
-        homeViewModel.getBookmarkPhotos()
-//        addSampleData()
+    private fun setupScrollListener() {
+        binding.rvRecentImage.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
 
-        return binding.root
+                val layoutManager = recyclerView.layoutManager as GridLayoutManager
+                val totalItemCount = layoutManager.itemCount
+                val lastVisibleItem = layoutManager.findLastVisibleItemPosition()
+                Log.d("Home", layoutManager.childCount.toString())
+                Log.d("Home", totalItemCount.toString())
+                Log.d("Home", lastVisibleItem.toString())
+
+                if (lastVisibleItem > 0) {
+                    if (!isLoading && totalItemCount <= (lastVisibleItem + 4)) {
+                        Log.d("TAG", isLoading.toString())
+                        // 다음 페이지 데이터를 로드
+                        currentPage++
+                        homeViewModel.getPhotos(currentPage)
+                        isLoading = true
+                    }
+                }
+            }
+        })
     }
 
     private fun observers() {
@@ -73,11 +105,18 @@ class HomeFragment : Fragment() {
             when (it) {
                 is UiState.Failure -> {
                     Log.d("HomeFragment", "사진 로딩 실패")
+                    isLoading = false
                 }
 
                 is UiState.Loading -> {}
                 is UiState.Success -> {
-                    recentRvAdapter.setData(it.data)
+                    if (currentPage == 1) {
+                        recentRvAdapter.setData(it.data)  // 초기 로드
+                        setupScrollListener()  // 초기 로드 후 스크롤 리스너 설정
+                    } else {
+                        recentRvAdapter.addData(it.data)  // 추가 로드
+                    }
+                    isLoading = false
                 }
             }
         }
@@ -106,9 +145,9 @@ class HomeFragment : Fragment() {
         )
     }
 
-    override fun onResume() {
-        super.onResume()
-        Log.d("HomeFragment", "onResume")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        Log.d("HomeFragment", "onViewCreated")
     }
 
     override fun onDestroyView() {

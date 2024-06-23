@@ -4,12 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.app.data.local.PhotoDao
 import com.example.app.data.local.PhotoDaoEntity
 import com.example.app.databinding.ItemRecentImageBinding
 import com.example.app.domain.model.PhotoEntity
 
 class RecentRvAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private var recentList: List<PhotoEntity> = emptyList()
+    private var recentList = mutableListOf<PhotoEntity>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val binding = ItemRecentImageBinding.inflate(
             LayoutInflater.from(parent.context),
@@ -54,8 +55,15 @@ class RecentRvAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         this.itemClick = onItemClickListener
     }
 
-    fun setData(list: List<PhotoEntity>) {
-        recentList = list
+    fun setData(newItems: List<PhotoEntity>) {
+        recentList.clear()
+        recentList.addAll(newItems)
         notifyDataSetChanged()
+    }
+
+    fun addData(newItems: List<PhotoEntity>) {
+        val startPosition = recentList.size
+        recentList.addAll(newItems)
+        notifyItemRangeInserted(startPosition, newItems.size)
     }
 }

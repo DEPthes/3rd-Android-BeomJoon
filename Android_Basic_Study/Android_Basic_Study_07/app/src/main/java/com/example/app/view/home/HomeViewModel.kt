@@ -24,12 +24,12 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     private val _bookmarkState = MutableLiveData<UiState<List<PhotoDaoEntity>>>(UiState.Loading)
     val bookmarkState: LiveData<UiState<List<PhotoDaoEntity>>> get() = _bookmarkState
 
-    fun getPhotos() {
+    fun getPhotos(currentPage: Int) {
         _photoState.value = UiState.Loading
 
         viewModelScope.launch {
             try {
-                photoRepositoryImpl.getPhotos().onSuccess {
+                photoRepositoryImpl.getPhotos(currentPage).onSuccess {
                     _photoState.value = UiState.Success(it)
                 }.onFailure {
                     _photoState.value = UiState.Failure(it.message)
