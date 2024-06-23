@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView.Recycler
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
+import com.example.app.R
 import com.example.app.databinding.FragmentCardBinding
 import com.example.app.view.detail.DetailViewModel
 import com.example.app.view.utils.UiState
@@ -50,20 +51,27 @@ class CardFragment : Fragment() {
             }
         }
 
-        binding.viewPagerCard.offscreenPageLimit = 3
-        binding.viewPagerCard.setPadding(10, 0, 10, 0)
         binding.viewPagerCard.adapter = viewPagerAdapter
         binding.viewPagerCard.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-
-        val transform = CompositePageTransformer()
-        transform.addTransformer(MarginPageTransformer(20))
-
-        transform.addTransformer(ViewPager2.PageTransformer { view: View, fl: Float ->
-            val v = 1 - abs(fl)
-            view.scaleY = 0.8f + v * 0.2f
-        })
-
-        binding.viewPagerCard.setPageTransformer(transform)
+        binding.viewPagerCard.offscreenPageLimit = 3
+        // item_view 간의 양 옆 여백을 상쇄할 값
+        val offsetBetweenPages =
+            resources.getDimensionPixelOffset(R.dimen.offsetBetweenPages).toFloat()
+        binding.viewPagerCard.setPageTransformer { page, position ->
+            val myOffset = position * -(2 * offsetBetweenPages)
+            if (position < -1) {
+                page.translationX = -myOffset
+            } else if (position <= 1) {
+                // Paging 시 Y축 Animation 배경색을 약간 연하게 처리
+                val scaleFactor = 0.85f.coerceAtLeast(1 - abs(position))
+                page.translationX = myOffset
+                page.scaleY = scaleFactor
+                page.alpha = scaleFactor
+            } else {
+                page.alpha = 0f
+                page.translationX = myOffset
+            }
+        }
     }
 
     private fun observer() {
