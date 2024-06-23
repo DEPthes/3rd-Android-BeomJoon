@@ -1,11 +1,10 @@
 package com.example.app.view.home
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.app.data.local.PhotoDao
-import com.example.app.data.local.PhotoDaoEntity
 import com.example.app.databinding.ItemRecentImageBinding
 import com.example.app.domain.model.PhotoEntity
 
@@ -62,7 +61,7 @@ class RecentRvAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     fun addData(newItems: List<PhotoEntity>) {
-        val startPosition = recentList.size
+        val startPosition = recentList.size + 1
         recentList.addAll(newItems)
         notifyItemRangeInserted(startPosition, newItems.size)
     }

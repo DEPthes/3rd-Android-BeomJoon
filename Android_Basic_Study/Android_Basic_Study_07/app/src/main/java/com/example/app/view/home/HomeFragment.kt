@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,9 +24,8 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var bookmarkRvAdapter: BookmarkRvAdapter
     private lateinit var recentRvAdapter: RecentRvAdapter
-    private val homeViewModel: HomeViewModel by viewModels()
+    private val homeViewModel: HomeViewModel by activityViewModels()
     private var isLoading = false
-    private var lastVisibleItem = 0
     private var currentPage = 1
 
     override fun onCreateView(
@@ -81,20 +81,14 @@ class HomeFragment : Fragment() {
                 super.onScrolled(recyclerView, dx, dy)
 
                 val layoutManager = recyclerView.layoutManager as GridLayoutManager
-                val totalItemCount = layoutManager.itemCount
-                val lastVisibleItem = layoutManager.findLastVisibleItemPosition()
-                Log.d("Home", layoutManager.childCount.toString())
-                Log.d("Home", totalItemCount.toString())
-                Log.d("Home", lastVisibleItem.toString())
-
-                if (lastVisibleItem > 0) {
-                    if (!isLoading && totalItemCount <= (lastVisibleItem + 4)) {
-                        Log.d("TAG", isLoading.toString())
-                        // 다음 페이지 데이터를 로드
+                if (!isLoading) {
+                    if (layoutManager.findLastCompletelyVisibleItemPosition() == recentRvAdapter.itemCount - 1
+                    ) {
                         currentPage++
                         homeViewModel.getPhotos(currentPage)
                         isLoading = true
                     }
+
                 }
             }
         })
