@@ -35,12 +35,12 @@
             android:layout_margin="12dp"
             android:ellipsize="end"
             android:maxLines="2"
-            android:text="아이템 설명입니다\n아이템 설명입니다."
             android:textColor="@color/white"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@id/iv_recent_image"
             app:layout_constraintEnd_toEndOf="@id/iv_recent_image"
-            app:layout_constraintStart_toStartOf="@id/iv_recent_image" />
+            app:layout_constraintStart_toStartOf="@id/iv_recent_image"
+            tools:text="아이템 설명입니다\n아이템 설명입니다." />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
