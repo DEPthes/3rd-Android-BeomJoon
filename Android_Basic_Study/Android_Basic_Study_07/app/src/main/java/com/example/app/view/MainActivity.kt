@@ -3,15 +3,18 @@ package com.example.app.view
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.app.R
 import com.example.app.databinding.ActivityMainBinding
 import com.example.app.view.card.CardFragment
 import com.example.app.view.home.HomeFragment
+import com.example.app.view.home.HomeViewModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private val homeViewModel: HomeViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(layoutInflater)
