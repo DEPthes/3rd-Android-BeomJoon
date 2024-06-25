@@ -2,7 +2,6 @@ package com.example.app.view
 
 import android.app.Application
 import com.example.app.data.local.PhotoDao
-import com.example.app.data.local.PhotoDaoEntity
 import com.example.app.data.local.PhotoDatabase
 import com.example.app.data.repository.BookmarkRepositoryImpl
 
