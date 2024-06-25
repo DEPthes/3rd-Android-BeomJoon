@@ -7,15 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.app.data.local.PhotoDaoEntity
 import com.example.app.databinding.FragmentHomeBinding
-import com.example.app.view.MainActivity
 import com.example.app.view.detail.DetailFragment
-import com.example.app.view.detail.FullFragment
 import com.example.app.view.utils.UiState
 
 class HomeFragment : Fragment() {
@@ -41,7 +38,6 @@ class HomeFragment : Fragment() {
         observers()
         homeViewModel.getPhotos(currentPage)
         homeViewModel.getBookmarkPhotos()
-//        addSampleData()
 
         return binding.root
     }
@@ -50,9 +46,7 @@ class HomeFragment : Fragment() {
         bookmarkRvAdapter = BookmarkRvAdapter().apply {
             setItemClickListener(object : OnItemClickListener {
                 override fun onItemClick(id: String) {
-                    (requireActivity() as MainActivity).replaceFragmentWithBackstack(
-                        DetailFragment(id)
-                    )
+                    showDetail(id)
                 }
             })
         }
@@ -60,9 +54,7 @@ class HomeFragment : Fragment() {
         recentRvAdapter = RecentRvAdapter().apply {
             setItemClickListener(object : OnItemClickListener {
                 override fun onItemClick(id: String) {
-                    FullFragment(id).show(
-                        parentFragmentManager, "SampleDialog"
-                    )
+                    showDetail(id)
                 }
             })
         }
@@ -74,6 +66,13 @@ class HomeFragment : Fragment() {
 
         binding.rvRecentImage.adapter = recentRvAdapter
     }
+
+    private fun showDetail(photoId: String) {
+        DetailFragment(photoId).show(
+            parentFragmentManager, "DetailDialog"
+        )
+    }
+
 
     private fun setupScrollListener() {
         binding.rvRecentImage.addOnScrollListener(object : RecyclerView.OnScrollListener() {
