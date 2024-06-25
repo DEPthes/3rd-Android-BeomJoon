@@ -1,18 +1,25 @@
 package com.example.app.view.detail
 
+import android.Manifest
 import android.app.Dialog
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.example.app.R
 import com.example.app.databinding.FragmentDetailBinding
+import com.example.app.utils.ImageUtils
+import com.example.app.utils.PermissionManager
+import com.example.app.utils.PermissionUtils
 import com.example.app.view.MainActivity
 import com.example.app.view.home.HomeViewModel
 import com.example.app.view.utils.UiState
@@ -23,11 +30,19 @@ class FullFragment(private val photoId: String) : DialogFragment() {
     private val binding get() = _binding!!
     private val detailViewModel: DetailViewModel by viewModels()
     private val homeViewModel: HomeViewModel by activityViewModels()
+    private lateinit var permissionLauncher: ActivityResultLauncher<Array<String>>
+    private val requiredPermissions = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        arrayOf(Manifest.permission.READ_MEDIA_IMAGES)
+    } else {
+        arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // false로 설정해 주면 화면밖 혹은 뒤로가기 버튼 시 다이얼로그라 dismiss 되지 않는다.
         isCancelable = false
+
+        setPermissionLauncher()
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -48,6 +63,7 @@ class FullFragment(private val photoId: String) : DialogFragment() {
 
         setupListeners()
         setObservers()
+
         return binding.root
     }
 
@@ -104,6 +120,18 @@ class FullFragment(private val photoId: String) : DialogFragment() {
             // Remove the fragment
             dismiss()
         }
+
+        binding.ivDownload.setOnClickListener {
+            handleDownloadClick()
+        }
+    }
+
+    private fun handleDownloadClick() {
+        if (PermissionUtils.checkPermissions(requireActivity(), requiredPermissions)) {
+            saveImageToGallery()
+        } else {
+            PermissionUtils.requestPermissions(permissionLauncher, requiredPermissions)
+        }
     }
 
     private fun setBookmark(thumb: String) {
@@ -117,6 +145,31 @@ class FullFragment(private val photoId: String) : DialogFragment() {
             }
             setBookmarkOpacity(isBookmark)
             isBookmark = !isBookmark
+        }
+    }
+
+    private fun saveImageToGallery() {
+        val imageUrl = detailViewModel.detailState.value?.let {
+            if (it is UiState.Success) it.data.thumb else null
+        }
+
+        if (imageUrl != null) {
+            ImageUtils.saveImageToGallery(requireContext(), imageUrl)
+        } else {
+            Toast.makeText(requireContext(), "이미지를 다운로드할 수 없습니다.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun setPermissionLauncher() {
+        permissionLauncher = registerForActivityResult(
+            ActivityResultContracts.RequestMultiplePermissions()
+        ) { permissions ->
+            val allGranted = permissions.values.all { it }
+            if (allGranted) {
+                saveImageToGallery()
+            } else {
+                Toast.makeText(requireContext(), "권한이 거부되었습니다.", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
