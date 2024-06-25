@@ -1,6 +1,9 @@
 package com.example.app.view.home
 
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -15,7 +18,7 @@ class RecentRvAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             parent,
             false
         )
-        return RecentHolder(binding)
+        return RecentViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
@@ -23,34 +26,41 @@ class RecentRvAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (holder is RecentHolder) {
-            val item = recentList[position]
-            holder.bind(item)
-        }
+        if (holder is RecentViewHolder) holder.bind(recentList[position])
     }
 
-    inner class RecentHolder(private val binding: ItemRecentImageBinding) :
+    inner class RecentViewHolder(private val binding: ItemRecentImageBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        init {
+            // Rv이미지 초기화
+//            binding.ivRecentImage.visibility = View.GONE
+//            binding.shimmerViewContainer.visibility = View.VISIBLE
+        }
+
         fun bind(item: PhotoEntity) {
-            // 이미지를 로드
-            Glide.with(binding.ivRecentImage.context)
+            // 이미지 로드
+            Glide.with(binding.ivRecentImage)
                 .load(item.thumb)
                 .into(binding.ivRecentImage)
 
-            binding.tvImageDesc.text = item.description
-
             // 클릭 이벤트 설정
             itemView.setOnClickListener {
-                itemClick.onItemClick(item.id)
+                itemClickListener?.onItemClick(item.id)
             }
+
+            // 3초 후 shimmer를 숨기고 이미지 표시
+//            Handler(Looper.getMainLooper()).postDelayed({
+//                binding.shimmerViewContainer.visibility = View.GONE
+//                binding.ivRecentImage.visibility = View.VISIBLE
+//            }, 3000)
         }
     }
 
-    lateinit var itemClick: OnItemClickListener
+    private var itemClickListener: OnItemClickListener? = null
 
-    fun setItemClickListener(onItemClickListener: OnItemClickListener) {
-        this.itemClick = onItemClickListener
+    fun setItemClickListener(listener: OnItemClickListener) {
+        itemClickListener = listener
     }
 
     fun setData(newItems: List<PhotoEntity>) {

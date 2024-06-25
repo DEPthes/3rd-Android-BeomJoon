@@ -1,6 +1,8 @@
 package com.example.app.view.home
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -38,6 +40,10 @@ class HomeFragment : Fragment() {
         observers()
         homeViewModel.getPhotos(currentPage)
         homeViewModel.getBookmarkPhotos()
+
+//        Handler(Looper.getMainLooper()).postDelayed({
+//            binding.tvRecentImage.visibility = View.VISIBLE
+//        }, 3000) // 3초 후에 tvRecentImage를 visible로 변경
 
         return binding.root
     }
@@ -136,11 +142,6 @@ class HomeFragment : Fragment() {
                 "https://images.unsplash.com/photo-1718489211836-65a20ad6bd8d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w2MjAyNzh8MHwxfGFsbHx8fHx8fHx8fDE3MTg5NTEzMTV8&ixlib=rb-4.0.3&q=80&w=200"
             )
         )
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        Log.d("HomeFragment", "onViewCreated")
     }
 
     override fun onDestroyView() {
