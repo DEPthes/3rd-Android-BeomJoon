@@ -113,7 +113,7 @@ class HomeFragment : Fragment() {
                         recentRvAdapter.setData(it.data)  // 초기 로드
                         setupScrollListener()  // 초기 로드 후 스크롤 리스너 설정
                     } else {
-                        recentRvAdapter.addData(it.data)  // 추가 로드
+                        recentRvAdapter.addData(it.data)
                     }
                     isLoading = false
                 }
@@ -127,7 +127,12 @@ class HomeFragment : Fragment() {
 
                 is UiState.Loading -> {}
                 is UiState.Success -> {
-                    bookmarkRvAdapter.setData(it.data)
+                    if (it.data.isEmpty()) {
+                        binding.group1.visibility = View.GONE
+                    } else {
+                        binding.group1.visibility = View.VISIBLE
+                        bookmarkRvAdapter.setData(it.data)
+                    }
                 }
             }
         }
